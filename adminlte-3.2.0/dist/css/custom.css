@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Moul&family=Siemreap&display=swap');
 :root {
   --transparent: 0.2;
   --background-transparent: 0.05;
@@ -27,8 +28,8 @@
 }
 
 body {
-  font-family: "Khmer OS Siemreap", sans-serif;
-  font-size: 15px;
+  /* font-family: "Siemreap", sans-serif; */
+  font-size: 14px;
   background-color: white;
   width: 100%;
   margin-left: auto;
@@ -189,6 +190,7 @@ table > thead > tr > th[data-sortable='true'][data-sorted='desc']::after {
 
 .table-footer{
   display: table-row-group;
+  border-bottom: 2px solid var(--border-color) !important;
 }
 
 table td.changed-icon::before{
@@ -254,4 +256,37 @@ table td.changed-color.value-below {
 
 .nav-link.active{
   color: var(--primary) !important;
+}
+
+table.td0-number {
+  counter-reset: rowNumber;
+}
+
+table.td0-number tr.row-level-1 {
+  counter-increment: rowNumber;
+}
+
+table.td0-number tr.row-level-1 td:first-child > span {
+  padding-left: 1.5rem !important;
+}
+
+table.td0-number tr.row-level-1 td:first-child::before {
+  content: counter(rowNumber) ".";
+  position: absolute;
+}
+
+.p-1-5 {
+  padding: 0.35rem !important;
+}
+
+.moul-regular {
+  font-family: "Moul", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.siemreap-regular {
+  font-family: "Siemreap", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
