@@ -17,6 +17,10 @@
     _initSortTable();
     // Fill zero null
     _fillZeroNull();
+    // Init chart
+    _initChart();
+
+
     _switchLanguage(urlParams.get('lang'));
   });
 
@@ -205,6 +209,35 @@
       if(item !== lang) {
         $('[data-lang="' + item + '"]').hide();
       }
+    });
+  }
+
+  function _initChart(){
+    let _chart = $("div[data-role='chart-container']");
+    if (typeof _chart === 'undefined' || _chart === null || _chart.length <= 0) {
+      return;
+    }
+    _chart.each(function (index, element) {
+      const id = $(element).attr('id');
+      let _chartConfig = $(`#${id}-config`).val();
+      if (typeof _chartConfig === 'undefined' || _chartConfig === null || _chartConfig === '') {
+        return;
+      }
+      _chartConfig = JSON.parse(_chartConfig);
+      if (typeof _chartConfig === 'undefined' || _chartConfig === null) {
+        return;
+      }
+      const ctx = $(`#${id}-canvas`).get(0).getContext('2d');
+      if (typeof ctx === 'undefined' || ctx === null) {
+        return;
+      }
+      // Set the canvas size
+      const width = $(element).width();
+      const height = $(element).height();
+      $(`#${id}-canvas`).attr('width', width);
+      $(`#${id}-canvas`).attr('height', height);
+      console.log(ctx);
+      // let _chart = new Chart(ctx, _chartConfig);
     });
   }
 
