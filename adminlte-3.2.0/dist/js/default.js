@@ -19,6 +19,7 @@
     _fillZeroNull();
     // Init chart
     _initChart();
+    // _testChart();
 
 
     _switchLanguage(urlParams.get('lang'));
@@ -114,7 +115,7 @@
     });
 
     // Sort the ordering data based on the value
-    let numberTypes = ['number', 'currency', 'khr', 'usd', 'percent','int', 'float', 'double'];
+    let numberTypes = ['number', 'currency', 'khr', 'usd', 'percent', 'int', 'float', 'double'];
     if (numberTypes.includes(_type)) {
       if (_order === 'asc') {
         _orderingData = _orderingData.sort(function (a, b) {
@@ -176,7 +177,7 @@
     // });
   }
 
-  function _fillZeroNull(){
+  function _fillZeroNull() {
     const _zero = ['0', '0.0', '0.00'];
     const _fill = '-';
     _zero.forEach(function (item) {
@@ -206,13 +207,13 @@
     }
     // Hide other languages
     _lang.forEach(function (item) {
-      if(item !== lang) {
+      if (item !== lang) {
         $('[data-lang="' + item + '"]').hide();
       }
     });
   }
 
-  function _initChart(){
+  function _initChart() {
     let _chart = $("div[data-role='chart-container']");
     if (typeof _chart === 'undefined' || _chart === null || _chart.length <= 0) {
       return;
@@ -223,6 +224,7 @@
       if (typeof _chartConfig === 'undefined' || _chartConfig === null || _chartConfig === '') {
         return;
       }
+      console.log(_chartConfig);
       _chartConfig = JSON.parse(_chartConfig);
       if (typeof _chartConfig === 'undefined' || _chartConfig === null) {
         return;
@@ -232,12 +234,7 @@
         return;
       }
       // Set the canvas size
-      const width = $(element).width();
-      const height = $(element).height();
-      $(`#${id}-canvas`).attr('width', width);
-      $(`#${id}-canvas`).attr('height', height);
-      console.log(ctx);
-      // let _chart = new Chart(ctx, _chartConfig);
+      let _chart = new Chart(ctx, _chartConfig);
     });
   }
 
