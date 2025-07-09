@@ -224,8 +224,8 @@
       if (typeof _chartConfig === 'undefined' || _chartConfig === null || _chartConfig === '') {
         return;
       }
-      console.log(_chartConfig);
       _chartConfig = JSON.parse(_chartConfig);
+      console.log(_chartConfig);
       if (typeof _chartConfig === 'undefined' || _chartConfig === null) {
         return;
       }
