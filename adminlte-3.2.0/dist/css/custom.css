@@ -242,16 +242,49 @@ table td.changed-color.value-between-above {
   color: var(--warning) !important;
 }
 
-table td.changed-color.value-between-below {
+table td.changed-color.value-between-below,
+span.changed-color.value-between {
   color: var(--warning) !important;
 }
 
-table td.changed-color.value-above {
+table td.changed-color.value-above,
+span.changed-color.value-above {
   color: var(--success) !important;
 }
 
-table td.changed-color.value-below {
+table td.changed-color.value-below,
+span.changed-color.value-below {
   color: var(--error) !important;
+}
+
+span.changed-color.value-between,
+span.changed-color.value-above,
+span.changed-color.value-below {
+  font-weight: 600;
+}
+
+span.changed-color.value-between::before {
+  content: "\f061";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: var(--primary-light) !important;
+  padding-right: 0.25rem;
+}
+
+span.changed-color.value-above::before {
+  content: "\f062";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: var(--success) !important;
+  padding-right: 0.25rem;
+}
+
+span.changed-color.value-below::before {
+  content: "\f063";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: var(--error) !important;
+  padding-right: 0.25rem;
 }
 
 .nav-link.active{
@@ -277,6 +310,29 @@ table.td0-number tr.row-level-1 td:first-child::before {
 
 .p-1-5 {
   padding: 0.35rem !important;
+}
+
+.py-1-5 {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+}
+
+.px-1-5 {
+  padding-left: 0.35rem !important;
+  padding-right: 0.35rem !important;
+}
+
+.pt-1-5 {
+  padding-top: 0.35rem !important;
+}
+.pb-1-5 {
+  padding-bottom: 0.35rem !important;
+}
+.pl-1-5 {
+  padding-left: 0.35rem !important;
+}
+.pr-1-5 {
+  padding-right: 0.35rem !important;
 }
 
 .moul-regular {
