@@ -12,6 +12,13 @@
 
   const urlParams = new URLSearchParams(window.location.search);
   const _lang = ['kh', 'en']
+  const _color = {
+    primary: "rgb(27, 88, 117)",
+    light: "rgb(64, 149, 191)",
+    success: "rgb(34, 197, 94)",
+    warning: "rgb(251, 161, 30)",
+    error: "rgb(239, 68, 68)",
+  }
   $(function () {
     // Document on ready
     _initSortTable();
@@ -225,7 +232,6 @@
         return;
       }
       _chartConfig = JSON.parse(_chartConfig);
-      console.log(_chartConfig);
       if (typeof _chartConfig === 'undefined' || _chartConfig === null) {
         return;
       }

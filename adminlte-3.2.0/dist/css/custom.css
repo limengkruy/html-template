@@ -3,18 +3,18 @@
   --transparent: 0.2;
   --background-transparent: 0.05;
 
-  --primary: #1b5875;
-  --primary-light: #0074d9;
-  --secondary: #754f1b;
-  --accent: #4f7557;
+  --primary: rgb(27, 88, 117);
+  --primary-light: rgb(64, 149, 191);
+  --secondary: rgb(217, 119, 6);
+  --accent: rgb(234, 88, 12);
 
-  --background: #f4f6f8;
-  --text: #2d3436;
-  --border: #dcdcdc;
+  --background: rgb(244, 246, 248);
+  --text: rgb(45, 52, 54);
+  --border: rgb(220, 220, 220);
 
-  --success: #28a745;
-  --warning: #ffc107;
-  --error: #dc3545;
+  --success: rgb(34, 197, 94);
+  --warning: rgb(251, 161, 30);
+  --error: rgb(239, 68, 68);
 
   --primary-shadow: rgba(27, 88, 117, var(--transparent));
 
