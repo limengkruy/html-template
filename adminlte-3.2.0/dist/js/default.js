@@ -206,11 +206,11 @@
 
     if (lang == 'kh') {
       $('html').attr('lang', 'km');
-      $('body').addClass('siemreap-regular');
+      $('body').addClass('KH-Siemreap');
     }
     else {
       $('html').attr('lang', 'en');
-      $('body').removeClass('siemreap-regular');
+      $('body').removeClass('KH-Siemreap');
     }
     // Hide other languages
     _lang.forEach(function (item) {

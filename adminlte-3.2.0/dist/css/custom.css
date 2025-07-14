@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Moul&family=Siemreap&display=swap');
+@font-face {
+  font-family: "KH-Muol";
+  src: url(../font/kh-muol-light-auto.ttf);
+}
+
+@font-face {
+  font-family: "KH-Siemreap";
+  src: url(../font/kh-siemreap-auto.ttf);
+}
+
+div {
+  font-family: myFirstFont;
+}
 :root {
   --transparent: 0.2;
   --background-transparent: 0.05;
