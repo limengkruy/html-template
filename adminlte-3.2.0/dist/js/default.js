@@ -250,16 +250,16 @@
         }
         let _g_color = _color.grid;
         if (typeof _chartConfig.options.scales[scale].grid.color !== 'undefined' && _chartConfig.options.scales[scale].grid.color !== null) {
-          if(_chartConfig.options.scales[scale].grid.color in _color) {
+          if (_chartConfig.options.scales[scale].grid.color in _color) {
             _chartConfig.options.scales[scale].grid.color = _color[_chartConfig.options.scales[scale].grid.color];
             _g_color = _chartConfig.options.scales[scale].grid.color;
           }
-          else{
+          else {
             _chartConfig.options.scales[scale].grid.color = _chartConfig.options.scales[scale].grid.color;
             _g_color = _chartConfig.options.scales[scale].grid.color;
           }
         }
-        else  {
+        else {
           _chartConfig.options.scales[scale].grid.color = _color.grid;
           _g_color = _color.grid;
         }
@@ -271,25 +271,25 @@
           let _c = _color.primary;
           if (typeof _chartConfig.options.scales[scale].zerolineColor !== 'undefined' && _chartConfig.options.scales[scale].zerolineColor !== null) {
             _c = _chartConfig.options.scales[scale].zerolineColor;
-            if(_c in _color) {
+            if (_c in _color) {
               _c = _color[_c];
             }
-            else{
+            else {
               _c = _chartConfig.options.scales[scale].zerolineColor;
             }
           }
           if (typeof _chartConfig.options.scales[scale].grid === 'undefined' || _chartConfig.options.scales[scale].grid === null) {
             _chartConfig.options.scales[scale].grid = {};
           }
-          _chartConfig.options.scales[scale].grid.color = function(context) {
-              return context.tick.value === 0 ? _c : _g_color;
-            }
+          _chartConfig.options.scales[scale].grid.color = function (context) {
+            return context.tick.value === 0 ? _c : _g_color;
+          }
           if (_chartConfig.options.scales[scale].zeroline === 'dashed') {
-            if(typeof _chartConfig.options.scales[scale].border === 'undefined' || _chartConfig.options.scales[scale].border === null) {
+            if (typeof _chartConfig.options.scales[scale].border === 'undefined' || _chartConfig.options.scales[scale].border === null) {
               _chartConfig.options.scales[scale].border = {};
             }
 
-            _chartConfig.options.scales[scale].border.dash = function(context) {
+            _chartConfig.options.scales[scale].border.dash = function (context) {
               return context.tick.value === 0 ? [3, 3] : [];
             }
           }
@@ -301,15 +301,17 @@
   }
 
   function _hidePreloader() {
-    // Hide the preloader
-    const $preloader = $('.preloader');
-    if ($preloader.length > 0) {
-      $preloader.fadeOut( "slow", function() {
+    setTimeout(function () {
+      // Hide the preloader after 1 second
+      const $preloader = $('.preloader');
+      if ($preloader.length > 0) {
+        $preloader.fadeOut("slow", function () {
 
-      });
-      // setTimeout(function () {
-      //   $preloader.children().hide();
-      // }, 200);
-    }
+        });
+        // setTimeout(function () {
+        //   $preloader.children().hide();
+        // }, 200);
+      }
+    }, 500);
   }
 })(jQuery)
