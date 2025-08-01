@@ -220,6 +220,7 @@
         $('[data-lang="' + item + '"]').hide();
       }
     });
+    $('body').removeClass('d-none');
   }
 
   function _initChart() {
