@@ -221,6 +221,7 @@
       }
     });
     $('body').removeClass('d-none');
+    _hidePreloader();
   }
 
   function _initChart() {
@@ -299,5 +300,14 @@
     });
   }
 
-
+  function _hidePreloader() {
+    // Hide the preloader
+    const $preloader = $('.preloader');
+    if ($preloader.length > 0) {
+      $preloader.fadeOut( "slow", function() {});
+      setTimeout(function () {
+        $preloader.children().hide();
+      }, 200);
+    }
+  }
 })(jQuery)

@@ -503,12 +503,26 @@ table.td0-number tr.row-level-1 td:first-child > div[aria-role="content-wrapper"
 .gdce-background {
   background:
     linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
-    url('../img/gdce-logo.webp');
+    url('../img/gdce-logo-430.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-size: 35%;
   background-position: center;
   background-attachment: fixed;
+}
+
+.preloader{
+  background: var(--primary)
+}
+.gdce-preloading {
+  background: url('../img/gdce-logo-430.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 15%;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 .table-nowrap {
