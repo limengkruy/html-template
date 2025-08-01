@@ -1,16 +1,3 @@
-@font-face {
-  font-family: "KH-Muol";
-  src: url(../font/kh-muol-light-auto.ttf);
-}
-
-@font-face {
-  font-family: "KH-Siemreap";
-  src: url(../font/kh-siemreap-auto.ttf);
-}
-
-div {
-  font-family: myFirstFont;
-}
 :root {
   --transparent: 0.2;
   --background-transparent: 0.05;
@@ -37,6 +24,16 @@ div {
 
   --transition-duration: 0.3s;
   --transition-timing-function: ease;
+}
+
+@font-face {
+  font-family: "KH-Muol";
+  src: url("../font/kh-muol-light-auto.ttf");
+}
+
+@font-face {
+  font-family: "KH-Siemreap";
+  src: url("../font/kh-siemreap-auto.ttf");
 }
 
 body {
@@ -134,9 +131,9 @@ table:has(tr.row-level-){
   background-color: var(--hover-background-color);
 }
 
-.table-hover tbody tr:hover > td > span,
-.table-hover tbody tr:hover > td::after,
-.table-hover tbody tr:hover > td::before {
+.table-hover tbody tr:hover > td > div[aria-role="content-wrapper"] > span,
+.table-hover tbody tr:hover > td > div[aria-role="content-wrapper"] > span::after,
+.table-hover tbody tr:hover > td > div[aria-role="content-wrapper"]::before {
   color: var(--primary-light);
 }
 
@@ -154,19 +151,28 @@ tr[data-key="grandtotal"] > td {
   color: var(--primary);
 }
 
-td[data-type="USD"]::before{
+td[data-type="USD"] div[aria-role="content-wrapper"],
+td.changed-icon div[aria-role="content-wrapper"]
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+td[data-type="USD"] div[aria-role="content-wrapper"]::before{
   /* content: attr(data-type) ": "; */
   content: "$";
-  display: table-cell;
-  position: absolute;
+  display: inline-block;
+  position: relative;
 }
 
-td[data-type="KHR"]::after{
+td[data-type="KHR"] span::after{
   content: "៛";
+  display: inline;
 }
 
-td[data-type="percent"]::after{
+td[data-type="percent"] span::after{
   content: " %";
+  display: inline;
 }
 
 table > thead > tr > th[data-sortable='true'] {
@@ -205,40 +211,40 @@ table > thead > tr > th[data-sortable='true'][data-sorted='desc']::after {
   border-bottom: 2px solid var(--border-color) !important;
 }
 
-table td.changed-icon::before{
-  display: table-cell;
-  position: absolute;
+table td.changed-icon > div[aria-role="content-wrapper"]::before{
+  display: inline-block;
+  position: relative;
 }
 
-table td.changed-icon.value-between::before {
+table td.changed-icon.value-between > div[aria-role="content-wrapper"]::before {
   content: "\f061";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: var(--primary-light) !important;
 }
 
-table td.changed-icon.value-between-above::before {
+table td.changed-icon.value-between-above > div[aria-role="content-wrapper"]::before {
   content: "\f062";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: var(--warning) !important;
 }
 
-table td.changed-icon.value-between-below::before {
+table td.changed-icon.value-between-below > div[aria-role="content-wrapper"]::before {
   content: "\f063";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: var(--warning) !important;
 }
 
-table td.changed-icon.value-above::before {
+table td.changed-icon.value-above > div[aria-role="content-wrapper"]::before {
   content: "\f062";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: var(--success) !important;
 }
 
-table td.changed-icon.value-below::before {
+table td.changed-icon.value-below > div[aria-role="content-wrapper"]::before {
   content: "\f063";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -311,11 +317,11 @@ table.td0-number tr.row-level-1 {
   counter-increment: rowNumber;
 }
 
-table.td0-number tr.row-level-1 td:first-child > span {
-  padding-left: 1.5rem !important;
+table.td0-number tr.row-level-1 td:first-child > div[aria-role="content-wrapper"] > span {
+  padding-left: 2.2rem !important;
 }
 
-table.td0-number tr.row-level-1 td:first-child::before {
+table.td0-number tr.row-level-1 td:first-child > div[aria-role="content-wrapper"]::before {
   content: counter(rowNumber) ".";
   position: absolute;
 }
@@ -347,14 +353,175 @@ table.td0-number tr.row-level-1 td:first-child::before {
   padding-right: 0.35rem !important;
 }
 
-.moul-regular {
+.kh-moul {
   font-family: "Moul", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.siemreap-regular {
-  font-family: "Siemreap", sans-serif;
+.kh-siemreap {
+  font-family: "KH-Siemreap", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.td-col-m1 {
+  max-width: 8.33333333% !important;
+}
+.td-col-m2 {
+  max-width: 16.66666667% !important;
+}
+.td-col-m3 {
+  max-width: 25% !important;
+}
+.td-col-m4 {
+  max-width: 33.33333333% !important;
+}
+.td-col-m5 {
+  max-width: 41.66666667% !important;
+}
+.td-col-m6 {
+  max-width: 50% !important;
+}
+.td-col-m7 {
+  max-width: 58.33333333% !important;
+}
+.td-col-m8 {
+  max-width: 66.66666667% !important;
+}
+.td-col-m9 {
+  max-width: 75% !important;
+}
+.td-col-m10 {
+  max-width: 83.33333333% !important;
+}
+.td-col-m11 {
+  max-width: 91.66666667% !important;
+}
+.td-col-m12 {
+  max-width: 100% !important;
+}
+
+.table-fixed {
+  table-layout: fixed;
+}
+
+.td-col-1 {
+  width: 8.33333333vw !important;
+  max-width: 8.33333333vw !important;
+}
+.td-col-1-5 {
+  width: 12.5vw !important;
+  max-width: 12.5vw !important;
+}
+.td-col-2 {
+  width: 16.66666667vw !important;
+  max-width: 16.66666667vw !important;
+}
+.td-col-3 {
+  width: 25vw !important;
+  max-width: 25vw !important;
+}
+.td-col-4 {
+  width: 33.33333333vw !important;
+  max-width: 33.33333333vw !important;
+}
+.td-col-5 {
+  width: 41.66666667vw !important;
+  max-width: 41.66666667vw !important;
+}
+.td-col-6 {
+  width: 50vw !important;
+  max-width: 50vw !important;
+}
+.td-col-7 {
+  width: 58.33333333vw !important;
+  max-width: 58.33333333vw !important;
+}
+.td-col-8 {
+  width: 66.66666667vw !important;
+  max-width: 66.66666667vw !important;
+}
+.td-col-9 {
+  width: 75vw !important;
+  max-width: 75vw !important;
+}
+.td-col-10 {
+  width: 83.33333333vw !important;
+  max-width: 83.33333333vw !important;
+}
+.td-col-11 {
+  width: 91.66666667vw !important;
+  max-width: 91.66666667vw !important;
+}
+.td-col-12 {
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+.bullet-red::before {
+  content: "\f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 0.40rem;
+  color: var(--error);
+  padding-right: 0.25rem;
+  vertical-align: super;
+}
+
+.fa-shipping-fast-down:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f48b \f309";
+}
+
+.fa-shipping-fast-up:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f48b \f30c";
+}
+
+.fa-globe-down:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f0ac \f309";
+}
+
+.fa-globe-up:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f0ac \f30c";
+}
+
+/* Override */
+.card {
+  border-radius: 0rem;
+}
+
+.nav-tabs .nav-link {
+  border-radius: 0rem;
+}
+
+/* End Override */
+
+.gdce-background {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+    url('../img/gdce-logo.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 35%;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.table-nowrap {
+  min-width: 100%;
+}
+
+.table-nowrap td,
+.table-nowrap th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:has(>.table-nowrap) {
+  overflow-x: auto;
 }

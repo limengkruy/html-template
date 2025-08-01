@@ -18,6 +18,7 @@
     success: "rgb(34, 197, 94)",
     warning: "rgb(251, 161, 30)",
     error: "rgb(239, 68, 68)",
+    grid: "rgba(27, 88, 117, 0.1)",
   }
   $(function () {
     // Document on ready
@@ -126,12 +127,12 @@
     if (numberTypes.includes(_type)) {
       if (_order === 'asc') {
         _orderingData = _orderingData.sort(function (a, b) {
-          return a.value - b.value;
+          return parseFloat(a.value) - parseFloat(b.value);
         });
       }
       else {
         _orderingData = _orderingData.sort(function (a, b) {
-          return b.value - a.value;
+          return parseFloat(b.value) - parseFloat(a.value);
         });
       }
     } else {
@@ -199,6 +200,7 @@
     if (typeof lang === 'undefined' || lang === null || lang === '') {
       lang = 'kh';
     }
+    lang = lang.toLowerCase();
     // Set the language in the URL
     urlParams.set('lang', lang);
     const newUrl = window.location.pathname + '?' + urlParams.toString();
@@ -206,11 +208,11 @@
 
     if (lang == 'kh') {
       $('html').attr('lang', 'km');
-      $('body').addClass('KH-Siemreap');
+      $('body').addClass('kh-siemreap');
     }
     else {
       $('html').attr('lang', 'en');
-      $('body').removeClass('KH-Siemreap');
+      $('body').removeClass('kh-siemreap');
     }
     // Hide other languages
     _lang.forEach(function (item) {
@@ -239,6 +241,58 @@
       if (typeof ctx === 'undefined' || ctx === null) {
         return;
       }
+
+      Object.keys(_chartConfig.options.scales).forEach(function (scale) {
+        if (typeof _chartConfig.options.scales[scale].grid === 'undefined' || _chartConfig.options.scales[scale].grid === null) {
+          _chartConfig.options.scales[scale].grid = {};
+        }
+        let _g_color = _color.grid;
+        if (typeof _chartConfig.options.scales[scale].grid.color !== 'undefined' && _chartConfig.options.scales[scale].grid.color !== null) {
+          if(_chartConfig.options.scales[scale].grid.color in _color) {
+            _chartConfig.options.scales[scale].grid.color = _color[_chartConfig.options.scales[scale].grid.color];
+            _g_color = _chartConfig.options.scales[scale].grid.color;
+          }
+          else{
+            _chartConfig.options.scales[scale].grid.color = _chartConfig.options.scales[scale].grid.color;
+            _g_color = _chartConfig.options.scales[scale].grid.color;
+          }
+        }
+        else  {
+          _chartConfig.options.scales[scale].grid.color = _color.grid;
+          _g_color = _color.grid;
+        }
+
+        if (typeof _chartConfig.options.scales[scale].grid.color === 'undefined' || _chartConfig.options.scales[scale].grid.color === null) {
+          _chartConfig.options.scales[scale].grid.color = _color.grid;
+        }
+        if (typeof _chartConfig.options.scales[scale].zeroline !== 'undefined' && _chartConfig.options.scales[scale].zeroline !== null) {
+          let _c = _color.primary;
+          if (typeof _chartConfig.options.scales[scale].zerolineColor !== 'undefined' && _chartConfig.options.scales[scale].zerolineColor !== null) {
+            _c = _chartConfig.options.scales[scale].zerolineColor;
+            if(_c in _color) {
+              _c = _color[_c];
+            }
+            else{
+              _c = _chartConfig.options.scales[scale].zerolineColor;
+            }
+          }
+          if (typeof _chartConfig.options.scales[scale].grid === 'undefined' || _chartConfig.options.scales[scale].grid === null) {
+            _chartConfig.options.scales[scale].grid = {};
+          }
+          _chartConfig.options.scales[scale].grid.color = function(context) {
+              return context.tick.value === 0 ? _c : _g_color;
+            }
+          if (_chartConfig.options.scales[scale].zeroline === 'dashed') {
+            if(typeof _chartConfig.options.scales[scale].border === 'undefined' || _chartConfig.options.scales[scale].border === null) {
+              _chartConfig.options.scales[scale].border = {};
+            }
+
+            _chartConfig.options.scales[scale].border.dash = function(context) {
+              return context.tick.value === 0 ? [3, 3] : [];
+            }
+          }
+        }
+      });
       // Set the canvas size
       let _chart = new Chart(ctx, _chartConfig);
     });
