@@ -28,8 +28,6 @@
     // Init chart
     _initChart();
     // _testChart();
-
-
     _switchLanguage(urlParams.get('lang'));
   });
 
@@ -306,12 +304,41 @@
       const $preloader = $('.preloader');
       if ($preloader.length > 0) {
         $preloader.fadeOut("slow", function () {
-
+          _resizeTd();
         });
         // setTimeout(function () {
         //   $preloader.children().hide();
         // }, 200);
       }
     }, 500);
+  }
+
+  function _resizeTd() {
+    // Dynamically add col and colgroup to each table based on the class of first row
+    $('table.same-width').each(function (index, element) {
+      const $table = $(element);
+      const $firstRow = $table.find('tbody tr:first');
+      if ($firstRow.length <= 0) {
+        return;
+      }
+      const $cols = $firstRow.children('td');
+      if ($cols.length <= 0) {
+        return;
+      }
+      // Remove existing colgroup
+      $table.children('colgroup').remove();
+      // Create new colgroup
+      const $colgroup = $('<colgroup></colgroup>');
+      $cols.each(function (i, col) {
+        const className = $(col).attr('class');
+        if (typeof className !== 'undefined' && className !== null && className !== '') {
+          $colgroup.append(`<col class="${className}">`);
+        } else {
+          $colgroup.append('<col>');
+        }
+      });
+      $table.prepend($colgroup);
+      $table.addClass('table-fixed');
+    });
   }
 })(jQuery)
