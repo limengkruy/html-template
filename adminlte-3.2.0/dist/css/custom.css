@@ -365,8 +365,9 @@ table.td0-number tr.row-level-1 td:first-child > div[aria-role="content-wrapper"
   padding-right: 0.35rem !important;
 }
 
-.kh-moul {
-  font-family: "Moul", serif;
+.kh-moul,
+.kh-muol {
+  font-family: "KH-Moul", serif;
   font-weight: 400;
   font-style: normal;
 }
