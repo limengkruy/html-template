@@ -250,20 +250,18 @@
 
     $("[data-role='control-sidebar-item'][data-value='" + filter + "']").addClass('active');
     $("[data-role='control-sidebar-item'][data-value='" + filter.toUpperCase() + "']").addClass('active');
-    if($('body').hasClass('control-sidebar-slide-open')){
+    if ($('body').hasClass('control-sidebar-slide-open')) {
       $('[data-widget="control-sidebar"]').trigger('click');
     }
 
-    let filterHtml = $("[data-value='"+ filter +"'][data-role='control-sidebar-item']");
-    if(filterHtml.length <= 0)
-    {
-      filterHtml = $("[data-value='"+ filter.toUpperCase() +"'][data-role='control-sidebar-item']");
+    let filterHtml = $("[data-value='" + filter + "'][data-role='control-sidebar-item']");
+    if (filterHtml.length <= 0) {
+      filterHtml = $("[data-value='" + filter.toUpperCase() + "'][data-role='control-sidebar-item']");
     }
-    if(filterHtml.length > 0)
-    {
+    if (filterHtml.length > 0) {
       $("[data-role='filter'][data-filter='all']").html(" [" + filterHtml.find("p").html() + "]");
     }
-    else{
+    else {
       $("[data-role='filter'][data-filter='all']").html("");
     }
   }
