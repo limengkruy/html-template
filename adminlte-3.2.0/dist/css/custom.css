@@ -657,7 +657,7 @@ table.td0-number
   background-size: 35%;
   /* background-size: cover; */
   will-change: transform;
-  z-index: -1;
+  z-index: 0;
   opacity: 0.05;
 }
 
